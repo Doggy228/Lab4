@@ -147,15 +147,25 @@ sb = sum(dcouple)/N
 ssbs = sb/N*m
 sbs = ssbs**0.5
 
-beta0 = (y1av1*1 + y2av2*1 + y3av3*1 + y4av4*1)/4
+#start additional task
+
+beta0 = (y1av1*1 + y2av2*1 + y3av3*1 + y4av4*1)/4 
 beta1 = (y1av1*(-1) + y2av2*(-1) + y3av3*1 + y4av4*1)/4
 beta2 = (y1av1*(-1) + y2av2*1 + y3av3*(-1) + y4av4*1)/4
 beta3 = (y1av1*(-1) + y2av2*1 + y3av3*1 + y4av4*(-1))/4
+beta12 = (y1av1*(1) + y2av2*(-1) + y3av3*(-1) + y4av4*1)/4
+beta13 = (y1av1*(1) + y2av2*(-1) + y3av3*(1) + y4av4*(-1))/4
+beta23 = (y1av1*(1) + y2av2*(1) + y3av3*(-1) + y4av4*(-1))/4
+beta123 = (y1av1*(-1) + y2av2*(-1) + y3av3*(-1) + y4av4*(-1))/4
 
 t0 = abs(beta0)/sbs
 t1 = abs(beta1)/sbs
 t2 = abs(beta2)/sbs
 t3 = abs(beta3)/sbs
+t12 = abs(beta12)/sbs
+t13 = abs(beta13)/sbs
+t23 = abs(beta23)/sbs
+t123 = abs(beta123)/sbs
 
 #print(t0,t1,t2,t3)
 
@@ -175,6 +185,20 @@ if (t2<ttabl):
 if (t3<ttabl):
     print("t3<ttabl, b3 не значимий")
     b3=0
+if (t12<ttabl):
+    print("t12<ttabl, b12 не значимий")
+    b12=0
+if (t13<ttabl):
+    print("t13<ttabl, b13 не значимий")
+    b13=0
+if (t23<ttabl):
+    print("t23<ttabl, b23 не значимий")
+    b23=0
+if (t123<ttabl):
+    print("t123<ttabl, b123 не значимий")
+    b123=0
+    
+#finish additional task
 
 yy1 = b0 + b1*x1min + b2*x2min + b3*x3min
 yy2 = b0 + b1*x1min + b2*x2max + b3*x3max
@@ -460,5 +484,3 @@ if cont==1:
         cont=1
     else:
         print("Fp=",round(Fp,2),"<Ft",Ft,"Рівняння адекватно оригіналу")
-
-
